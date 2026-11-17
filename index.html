@@ -172,6 +172,22 @@ section{padding-block:7rem;position:relative}
 .origine .prix{color:var(--orange)}
 .compo{border-top:1px solid rgba(228,227,223,.2);margin-top:1rem;padding-top:.9rem;font-size:1rem}
 
+
+/* ---------- Dons ---------- */
+.dons{background:var(--cendre);overflow:hidden}
+.dons .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:center}
+.dons h2{max-width:14ch}
+.dons .discret{font-size:.95rem;color:var(--doux);border-left:3px solid var(--vert-clair);padding-left:.9rem;margin-top:1.5rem}
+.arbre{width:100%;max-width:30rem;margin-inline:auto;overflow:visible}
+.arbre .tronc{fill:none;stroke:#6D5237;stroke-linecap:round;stroke-dasharray:var(--l);stroke-dashoffset:var(--l);transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1)}
+.arbre .f{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .7s cubic-bezier(.3,1.6,.5,1)}
+.dons.vu .tronc{stroke-dashoffset:0}
+.dons.vu .f{transform:scale(1)}
+.arbre .houppe{transform-origin:240px 330px;animation:balance 5s ease-in-out infinite}
+@keyframes balance{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+.arbre .coque{transform-box:fill-box;transform-origin:center;opacity:0;transition:opacity .6s,transform 1s}
+.dons.vu .coque{opacity:1}
+
 /* ---------- Allumage interactif ---------- */
 .allumage .wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .foyer{position:relative;background:var(--nuit);border-radius:18px;padding:1.5rem;overflow:hidden;--chaleur:0}
@@ -232,6 +248,7 @@ footer p{margin:.3rem 0}
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
   .nav ul li:not(:last-child){display:none}
+  .dons .wrap{grid-template-columns:1fr;gap:2rem}
   .hero .wrap,.carte .wrap,.allumage .wrap,.inscription .wrap,.choc .wrap{grid-template-columns:1fr;gap:2.5rem}
   .tas{max-width:20rem}
   .recit{grid-template-columns:1fr;gap:0}
@@ -264,6 +281,7 @@ footer p{margin:.3rem 0}
     <ul>
       <li><a href="#histoire">D'où il vient</a></li>
       <li><a href="#gammes">Nos gammes</a></li>
+      <li><a href="#dons">Pour la forêt</a></li>
       <li><a href="#allumage">L'allumer</a></li>
       <li><a href="#acheter">Où l'acheter</a></li>
       <li><a class="mini" href="#inscription">Être prévenu</a></li>
@@ -283,7 +301,7 @@ footer p{margin:.3rem 0}
           <a class="btn btn-braise" href="#inscription">Être prévenu du lancement</a>
           <a class="btn btn-ligne" href="#histoire">Voir comment on le fait</a>
         </div>
-        <p class="lancement">En vente dès avril 2027 dans le Sud-Ouest</p>
+        <p class="lancement">En vente dès avril 2027 dans le Sud-Ouest. Une partie de chaque paquet est reversée à la forêt.</p>
       </div>
       <svg class="tas" id="tas" viewBox="0 0 420 400" role="img" aria-label="Un tas de briquettes qui rougeoient, à côté d'une demi-coque de noix">
         <defs>
@@ -314,8 +332,8 @@ footer p{margin:.3rem 0}
   <!-- BANDEAU -->
   <div class="bandeau" aria-hidden="true">
     <div class="piste">
-      <span>Coques de noix du Périgord</span><span>Zéro arbre coupé</span><span>Fabriqué en Dordogne</span><span>Noisettes du Lot-et-Garonne</span><span>Briquettes pressées</span>
-      <span>Coques de noix du Périgord</span><span>Zéro arbre coupé</span><span>Fabriqué en Dordogne</span><span>Noisettes du Lot-et-Garonne</span><span>Briquettes pressées</span>
+      <span>Coques de noix du Périgord</span><span>Zéro arbre coupé</span><span>Fabriqué en Dordogne</span><span>Noisettes du Lot-et-Garonne</span><span>Une partie de chaque paquet pour la forêt</span>
+      <span>Coques de noix du Périgord</span><span>Zéro arbre coupé</span><span>Fabriqué en Dordogne</span><span>Noisettes du Lot-et-Garonne</span><span>Une partie de chaque paquet pour la forêt</span>
     </div>
   </div>
 
@@ -467,6 +485,31 @@ footer p{margin:.3rem 0}
     </div>
   </section>
 
+
+  <!-- DONS -->
+  <section class="dons" id="dons" aria-labelledby="t-dons">
+    <div class="wrap">
+      <div>
+        <h2 id="t-dons">Chaque paquet donne aussi à la forêt</h2>
+        <p>Notre charbon n'abat aucun arbre. On a voulu aller un cran plus loin : sur chaque paquet vendu, une partie du prix est reversée à des projets de plantation et de protection des forêts françaises.</p>
+        <p>Vous faites votre barbecue, et une partie de votre achat repart dans les arbres.</p>
+        <p class="discret">25 centimes par sac de 4 kg. Le montant total reversé chaque année sera publié sur ce site.</p>
+      </div>
+      <svg class="arbre" viewBox="0 0 480 440" role="img" aria-label="Un arbre qui pousse au-dessus de coques de noix">
+          <ellipse cx="240" cy="420" rx="170" ry="14" fill="#D3D2CD"/>
+          <g class="houppe">
+            <path class="tronc" d="M240 420 C238 360 244 320 240 250" stroke-width="22"/>
+            <path class="tronc" d="M240 320 C215 290 190 270 165 235" stroke-width="10" style="transition-delay:.5s"/>
+            <path class="tronc" d="M241 300 C265 270 290 255 318 228" stroke-width="10" style="transition-delay:.6s"/>
+            <path class="tronc" d="M240 260 C232 210 236 175 240 140" stroke-width="9" style="transition-delay:.75s"/>
+            <circle class="f" cx="240" cy="110" r="42" fill="#5E8A2E" style="transition-delay:1.00s"/><circle class="f" cx="185" cy="135" r="38" fill="#9BC157" style="transition-delay:1.07s"/><circle class="f" cx="295" cy="135" r="46" fill="#7BA544" style="transition-delay:1.14s"/><circle class="f" cx="150" cy="180" r="34" fill="#5E8A2E" style="transition-delay:1.21s"/><circle class="f" cx="330" cy="180" r="34" fill="#9BC157" style="transition-delay:1.28s"/><circle class="f" cx="205" cy="170" r="34" fill="#5E8A2E" style="transition-delay:1.35s"/><circle class="f" cx="275" cy="170" r="42" fill="#9BC157" style="transition-delay:1.42s"/><circle class="f" cx="240" cy="160" r="34" fill="#7BA544" style="transition-delay:1.49s"/><circle class="f" cx="170" cy="230" r="38" fill="#5E8A2E" style="transition-delay:1.56s"/><circle class="f" cx="310" cy="230" r="34" fill="#9BC157" style="transition-delay:1.63s"/><circle class="f" cx="220" cy="215" r="34" fill="#5E8A2E" style="transition-delay:1.70s"/><circle class="f" cx="260" cy="215" r="46" fill="#9BC157" style="transition-delay:1.77s"/><circle class="f" cx="130" cy="235" r="46" fill="#7BA544" style="transition-delay:1.84s"/><circle class="f" cx="350" cy="235" r="34" fill="#5E8A2E" style="transition-delay:1.91s"/><circle class="f" cx="240" cy="250" r="38" fill="#9BC157" style="transition-delay:1.98s"/><circle class="f" cx="195" cy="265" r="34" fill="#5E8A2E" style="transition-delay:2.05s"/><circle class="f" cx="285" cy="265" r="46" fill="#9BC157" style="transition-delay:2.12s"/><circle class="f" cx="240" cy="205" r="34" fill="#7BA544" style="transition-delay:2.19s"/>
+          </g>
+          <g class="coque" style="transition-delay:.2s"><path d="M120 418 A26 22 0 0 0 172 418 Z" fill="#8A6A48"/><rect x="116" y="414" width="60" height="6" rx="3" fill="#B48B5E"/></g>
+          <g class="coque" style="transition-delay:.35s"><path d="M318 418 A20 17 0 0 0 358 418 Z" fill="#A07B55"/><rect x="315" y="414" width="46" height="5" rx="2.5" fill="#B48B5E"/></g>
+        </svg>
+    </div>
+  </section>
+
   <!-- ALLUMAGE -->
   <section class="allumage" id="allumage" aria-labelledby="t-allumage">
     <div class="wrap">
@@ -526,6 +569,7 @@ footer p{margin:.3rem 0}
       <h2 id="t-faq">Vos questions</h2>
       <details><summary>Est-ce que le charbon a un goût de noix ?</summary><p>Non. Les huiles et les arômes de la coque partent pendant la carbonisation, entre 500 et 600 °C. Le goût de votre grillade vient de la cuisson, pas du combustible.</p></details>
       <details><summary>Pourquoi dire « aucun arbre coupé » ?</summary><p>Le charbon de bois classique est fait à partir de bois. Le nôtre est fait de coques, qui sont des restes de la transformation des noix et des noisettes. On valorise ce qui existe déjà.</p></details>
+      <details><summary>Combien reversez-vous, et à qui ?</summary><p>25 centimes par sac de 4 kg vendu, reversés à des projets de plantation et de protection des forêts françaises. Le nom de notre partenaire et le montant total reversé seront publiés ici chaque année.</p></details>
       <details><summary>Le charbon est-il contrôlé ?</summary><p>Nos deux gammes sont testées selon la norme européenne DIN EN 1860-2 sur le charbon de barbecue (taux de carbone, cendres, humidité) avant leur mise en vente.</p></details>
       <details><summary>Quand pourrai-je en acheter ?</summary><p>La gamme Signature arrive en magasin en avril 2027, au début de la saison des barbecues. Inscrivez-vous plus bas pour être prévenu le jour de l'ouverture.</p></details>
       <details><summary>Livrez-vous partout en France ?</summary><p>La vente en ligne par lot de 15 kg sera ouverte en France métropolitaine. En magasin, nous démarrons dans le Sud-Ouest.</p></details>
@@ -666,6 +710,11 @@ footer p{margin:.3rem 0}
   var carte = document.getElementById('carte');
   carte.querySelectorAll('.route').forEach(function(r){ r.style.setProperty('--l', Math.ceil(r.getTotalLength())); });
   new IntersectionObserver(function(en, obs){ if(en[0].isIntersecting){ carte.classList.add('vu'); obs.disconnect(); } }, {threshold:.35}).observe(carte);
+
+  /* ---- Arbre des dons ---- */
+  var dons = document.getElementById('dons');
+  dons.querySelectorAll('.tronc').forEach(function(t){ t.style.setProperty('--l', Math.ceil(t.getTotalLength())); });
+  new IntersectionObserver(function(en, obs){ if(en[0].isIntersecting){ dons.classList.add('vu'); obs.disconnect(); } }, {threshold:.35}).observe(dons);
 
   /* ---- Paquets en 3D ---- */
   if(!tactile && !calme){
