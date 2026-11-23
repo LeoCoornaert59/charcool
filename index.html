@@ -85,6 +85,21 @@ section{padding-block:7rem;position:relative}
 .bandeau span::after{content:"";display:inline-block;width:.55em;height:.55em;background:var(--charbon);border-radius:40% 40% 45% 45%;margin-left:1.5rem;vertical-align:.08em}
 @keyframes file{to{transform:translateX(-50%)}}
 
+
+/* ---------- La pub ---------- */
+.spot{background:var(--nuit);color:var(--blanc);padding-top:8rem}
+.spot-tete{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem 3rem;margin-bottom:2.5rem}
+.spot-tete h2{margin:0}
+.spot-tete p{color:var(--cendre-2);margin:0;max-width:26rem}
+.ecran{position:relative;width:100%;max-width:calc((100vh - 15rem) * 16 / 9);min-width:min(100%,40rem);margin-inline:auto;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#000;box-shadow:0 0 0 1px rgba(255,255,255,.06),0 40px 90px -35px rgba(232,121,47,.55)}
+.ecran video{width:100%;height:100%;display:block;object-fit:cover}
+.lecture{position:absolute;inset:0;display:grid;place-items:center;border:0;padding:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.55));cursor:pointer;color:var(--blanc)}
+.lecture .rond{width:6.5rem;height:6.5rem;border-radius:50%;background:var(--braise);display:grid;place-items:center;animation:pouls 2s ease-in-out infinite;transition:transform .2s}
+.lecture:hover .rond{transform:scale(1.08);background:var(--braise-vive)}
+.lecture svg{width:2.4rem;margin-left:.35rem}
+.lecture .legende-pub{position:absolute;left:1.5rem;bottom:1.2rem;font-family:var(--display);font-weight:800;font-size:1.4rem}
+.ecran.joue .lecture{display:none}
+
 /* ---------- Histoire défilante ---------- */
 .histoire{padding-top:9rem}
 .histoire .intro{margin-bottom:2rem}
@@ -251,6 +266,10 @@ footer p{margin:.3rem 0}
   .dons .wrap{grid-template-columns:1fr;gap:2rem}
   .hero .wrap,.carte .wrap,.allumage .wrap,.inscription .wrap,.choc .wrap{grid-template-columns:1fr;gap:2.5rem}
   .tas{max-width:20rem}
+  .spot{padding-top:6rem}
+  .lecture .rond{width:4.6rem;height:4.6rem}
+  .lecture svg{width:1.8rem}
+  .lecture .legende-pub{font-size:1.15rem;left:1rem;bottom:.8rem}
   .recit{grid-template-columns:1fr;gap:0}
   .scene{top:3.8rem;height:auto;padding:1rem 0 1.2rem;background:var(--cendre);z-index:2}
   .scene .cadre{width:min(62vw,15rem)}
@@ -279,6 +298,7 @@ footer p{margin:.3rem 0}
   <div class="wrap">
     <a class="logo" href="#top"><svg viewBox="0 0 24 32" aria-hidden="true"><path d="M12 1C14 8 21 11 21 19a9 9 0 0 1-18 0c0-5 3-7 4-11 1 3 2 5 4 6 0-5 0-9 1-13Z" fill="#9BC157"/><path d="M12 14c1 4 5 5 5 9a5 5 0 0 1-10 0c0-3 3-4 5-9Z" fill="#5E8A2E"/></svg>Charcool</a>
     <ul>
+      <li><a href="#pub">La pub</a></li>
       <li><a href="#histoire">D'où il vient</a></li>
       <li><a href="#gammes">Nos gammes</a></li>
       <li><a href="#dons">Pour la forêt</a></li>
@@ -299,7 +319,7 @@ footer p{margin:.3rem 0}
         <p class="chapo">Des briquettes de barbecue faites avec les coques de noix et de noisette du Sud-Ouest. Aucun arbre coupé, fabriquées en Dordogne.</p>
         <div class="actions">
           <a class="btn btn-braise" href="#inscription">Être prévenu du lancement</a>
-          <a class="btn btn-ligne" href="#histoire">Voir comment on le fait</a>
+          <a class="btn btn-ligne" href="#pub">Voir la pub</a>
         </div>
         <p class="lancement">En vente dès avril 2027 dans le Sud-Ouest. Une partie de chaque paquet est reversée à la forêt.</p>
       </div>
@@ -336,6 +356,24 @@ footer p{margin:.3rem 0}
       <span>Coques de noix du Périgord</span><span>Zéro arbre coupé</span><span>Fabriqué en Dordogne</span><span>Noisettes du Lot-et-Garonne</span><span>Une partie de chaque paquet pour la forêt</span>
     </div>
   </div>
+
+
+  <!-- LA PUB -->
+  <section class="spot" id="pub" aria-labelledby="t-pub">
+    <div class="wrap">
+      <div class="spot-tete">
+        <h2 id="t-pub">Notre pub</h2>
+        <p>Tournée par l'équipe Charcool. 28 secondes, à regarder avec le son.</p>
+      </div>
+      <div class="ecran" id="ecran">
+        <video id="spot" src="charcool-pub.mp4" poster="charcool-pub.webp" preload="metadata" playsinline width="1920" height="1080"></video>
+        <button class="lecture" id="lecture" type="button" aria-label="Lire la pub Charcool, 28 secondes">
+          <span class="rond"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l15 8-15 8z" fill="#2B2D30"/></svg></span>
+          <span class="legende-pub">Lire la pub</span>
+        </button>
+      </div>
+    </div>
+  </section>
 
   <!-- HISTOIRE -->
   <section class="histoire" id="histoire" aria-labelledby="t-histoire">
@@ -680,6 +718,19 @@ footer p{margin:.3rem 0}
       tas.style.transform = 'translate('+(x*-24)+'px,'+(y*-18)+'px) rotate('+(x*-4)+'deg)';
     });
   }
+
+  /* ---- Pub vidéo ---- */
+  var ecran = document.getElementById('ecran'), video = document.getElementById('spot'), lecture = document.getElementById('lecture');
+  lecture.addEventListener('click', function(){
+    ecran.classList.add('joue'); video.controls = true;
+    var p = video.play(); if(p && p.catch){ p.catch(function(){}); }
+    video.focus();
+  });
+  video.addEventListener('ended', function(){
+    video.controls = false; ecran.classList.remove('joue');
+    lecture.querySelector('.legende-pub').textContent = 'Revoir la pub';
+    video.load();
+  });
 
   /* ---- Histoire défilante ---- */
   var scene = document.getElementById('scene'), compteur = document.getElementById('compteur');
